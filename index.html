@@ -4,9 +4,27 @@
 	<title>TexExp Demo</title>
 </head>
 <body>
-    <textarea rows="20" cols="50"></textarea>
+    <textarea rows="20" cols="50" id="text"></textarea>
     <div>
-        <button>Translate!</button>
+        <button onclick="sendPost()">Translate!</button>
     </div>
+<script>
+    function sendPost() {
+        var text = document.getElementById("text");
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) return;
+            if (this.status == 200) {
+                console.log(this.responseText);
+            } else {
+                console.log(this)
+            }
+        };
+
+        xhr.open("POST", "http://localhost:8500", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(text.value);
+    }
+</script>
 </body>
 </html>

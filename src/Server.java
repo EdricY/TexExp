@@ -17,7 +17,13 @@ public class Server implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-
+        if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin","*");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
+            exchange.sendResponseHeaders(204, -1);
+            return;
+        }
         if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
             try {
                 // REQUEST Headers
@@ -30,7 +36,6 @@ public class Server implements HttpHandler {
                     System.out.println(map);
                 }
                 */
-
                 int contentLength = Integer.parseInt(requestHeaders.getFirst("Content-length"));
 
                 // REQUEST Body
@@ -46,6 +51,9 @@ public class Server implements HttpHandler {
 
                 // RESPONSE Headers
                 Headers responseHeaders = exchange.getResponseHeaders();
+                responseHeaders.add("Access-Control-Allow-Headers","x-prototype-version,x-requested-with");
+                responseHeaders.add("Access-Control-Allow-Methods","GET,POST");
+                responseHeaders.add("Access-Control-Allow-Origin","*");
 
                 // Send RESPONSE Headers
                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, textBytes.length);
