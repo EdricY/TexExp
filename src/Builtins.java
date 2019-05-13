@@ -17,6 +17,7 @@ public class Builtins {
         put("plus", new Plus());
         put("cat", new Concat());
         put("substr", new Substring());
+        put("rep", new Repeat());
     }};
 
     public interface Transformer {
@@ -109,5 +110,18 @@ public class Builtins {
         }
     }
 
+    public static class Repeat implements Transformer {
+        public String evaluate(String[] args) {
+            int times = 2;
+            if (args.length > 1) {
+                times = Integer.parseInt(args[1]);
+            }
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < times; i++) {
+                builder.append(args[0]);
+            }
+            return builder.toString();
+        }
+    }
 
 }

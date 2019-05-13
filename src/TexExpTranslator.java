@@ -617,7 +617,7 @@ public class TexExpTranslator extends TexExpBaseListener {
     }
 
     public static void main(String[] args) throws Exception {
-        String output = translate("var=it>>> $var works!");
+        String output = translate("var=it >>> $var.rep(5)works!");
         System.out.println(output);
     }
 
