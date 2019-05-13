@@ -9,13 +9,78 @@
     </style>
 </head>
 <body>
-    <textarea rows="20" cols="50" id="text"></textarea>
+    <div>
+        <span>samples:</span>
+        <button id="input" onclick="showSample1()">Amazing Grace</button>
+        <button id="input" onclick="showSample2()">Mail Merge</button>
+        <button id="input" onclick="showSample3()">Exercise</button>
+    </div>
+    <textarea rows="20" cols="50" id="text">var = it>>>$var works!</textarea>
     <div>
         <button onclick="sendPost()">Translate!</button>
     </div>
     <div id="output"></div>
+<script type="text" id="sample1">
+[refrain]
+My chains are gone I've been set free
+My God my savior has ransomed me
+and like a flood His mercy rains.
+Unending love Amazing grace
+
+[verse1]
+Amazing Grace how sweet the sound
+That saved a wretch like me
+I once was lost but now am found
+Was blind but now I see
+
+[verse2]
+'Twas grace that taught my heart to fear
+And grace my fear relieved
+How precious did that grace appear
+The hour I first believed
+
+[verse3]
+When we've been there ten thousand years
+Bright shining as the sun
+We've no less days to sing God's praise
+than when we've first begun.
+
+verses = {$verse1, $verse2, $verse3}
+
+>>>
+@verses
+$refrain 
+</script>
+<script type="text" id="sample2">
+names = {Dave, Ella, Abby}
+years = {5,    1,    10}
+
+>>>
+Dear @names,
+Thank you for your @years.gt(1) years of service with us.
+--------------
+</script>
+<script type="text" id="sample3">
+[warmup]
+400m
+stretches
+
+[workout1]
+400m
+10 push ups
+10 sit ups
+10 wall balls
+10 squats
+10 pull ups
+
+>>>
+Today's workout:
+$warmup
+$workout1.rep(3)
+</script>
 <script>
     var output = document.getElementById("output");
+    var input = document.getElementById("input");
     function sendPost() {
         var text = document.getElementById("text");
         var xhr = new XMLHttpRequest();
@@ -32,6 +97,9 @@
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(text.value);
     }
+    function showSample1() { text.value = sample1.innerText.trim() }
+    function showSample2() { text.value = sample2.innerText.trim() }
+    function showSample3() { text.value = sample3.innerText.trim() }
 </script>
 </body>
 </html>
