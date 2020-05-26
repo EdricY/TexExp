@@ -1,5 +1,5 @@
 # Project - Domain Specific Language
-## Live demo: http://18.212.8.79/
+## Live demo: http://imani-muya.xyz/TexExp/
 
 ## Student Info
 
