@@ -15,6 +15,7 @@
         <button id="input" onclick="showSample2()">Mail Merge</button>
         <button id="input" onclick="showSample3()">Exercise</button>
     </div>
+    <input id="serverName" placeholder="Server Name"/>
     <textarea rows="20" cols="50" id="text">var = it>>>$var works!</textarea>
     <div>
         <button onclick="sendPost()">Translate!</button>
@@ -93,7 +94,7 @@ $workout1.rep(3)
             }
         };
 
-        xhr.open("POST", "http://imani-muya.xyz:8500", true);
+        xhr.open("POST", document.getElementById("serverName").value, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(text.value);
     }
