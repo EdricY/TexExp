@@ -1,5 +1,5 @@
 # Project - Domain Specific Language
-## Live demo: http://imani-muya.xyz/TexExp/
+## Live demo: https://edricy.github.io/TexExp/
 
 ## Student Info
 
